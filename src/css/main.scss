@@ -14,43 +14,83 @@
 @import './sass/Layouts/grid';
 //Pages
 @import './sass/Pages/_header';
+@import './sass/Pages/_calculator';
+@import './sass/Pages/_todolist';
 
-.app{margin: 50px;}
-.search{
-  padding: 10px;
-  font-size: 20px;
-
-}
-input {
-  margin: auto;
-  display: block;
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
-.list{
+html,
+body {
+  margin: 0;
   padding: 0;
-  list-style: none;
-  text-align: center;
-  padding-left: 25%;
+  font-family: sans-serif;
+  box-sizing: border-box;
 }
-.listItem {
-  padding-right: 140px;
-  font-size: 25px;
-  color: #444;
-  display: inline-block;
-  padding-bottom: 20px;
+.wrapper {
+  max-width: 420px;
+  min-height: 96vh;
+  margin: 0 auto;
 }
-td.listItem {
+
+button {
+  font-size: 2rem;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+.modifiers button {
+  background-color: #ccc;
+}
+.operations button {
+  background-color: orange;
+  width: 100px;
+}
+.digits button {
+  background-color: #efefef;
+}
+
+/* All things Grid, Flexbox, Box Alignment */
+.wrapper,
+.subgrid {
+  display: grid;
+}
+.wrapper {
+  grid-template-areas:
+    "total total total total"
+    "modif modif modif oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper"
+    "digit digit digit oper";
+  grid-auto-columns: 1fr;
+}
+.show-input {
+  grid-area: total;
+}
+.modifiers {
+  grid-area: modif;
+}
+.operations {
+  grid-area: oper;
+}
+.digits {
+  grid-area: digit;
+}
+
+.show-input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   font-size: 20px;
-  width: 120px;
-  text-align: center;
+  border: 1px solid rgb(112, 102, 102);
 }
 
-.listItem {
-  padding-right: 140px;
-  font-size: 25px;
-  color: #444;
-  display: inline-block;
-  padding-bottom: 20px;
+.modifiers {
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
 }
 
+.digits {
+  display: flex;
+  flex-wrap: wrap;
+}
+.digits button {
+  flex: 1 0 26%;
+}
